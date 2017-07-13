@@ -1,0 +1,196 @@
+---
+# .. vim: foldmarker=[[[,]]]:foldmethod=marker
+
+# pip ansible role default variables
+# ==================================
+
+# .. contents:: Sections
+#    :local:
+
+# elasticsearch packaging
+# ----------------
+
+# .. envvar:: elasticsearch_docker_imagen [[[
+#
+#    ElasticSearch docker image
+#
+elasticsearch_docker_image: melodous/elasticsearch
+#
+# ]]]
+
+# .. envvar:: elasticsearch_version [[[
+#
+#    ElasticSearch docker image version (TAG)
+#
+elasticsearch_version: 5.4.1
+#
+# ]]]
+
+# .. envvar:: es_docker_labels [[[
+#
+#    Yaml dictionary which maps Docker labels.
+#    os_environment: Name of the environment, example: Production, by default "default".
+#    os_contianer_type: Type of the container, by default elasticsearch.
+#
+es_docker_labels:
+  os_environment: "{{ docker_os_environment | default('default') }}"
+  os_contianer_type: elasticsearch
+#
+# ]]]
+
+# ElasticSearch configuration
+# ----------------------
+
+# .. envvar:: es_group [[[
+#
+#    ElasticSearch group name
+#
+es_group: elasticsearch
+#
+# ]]]
+
+# .. envvar:: es_group_id [[[
+#
+#    ElasticSearch group id
+#
+es_group_id: 1000
+#
+# ]]]
+
+# .. envvar:: es_user [[[
+#
+#    ElasticSearch user name
+#
+es_user: elasticsearch
+#
+# ]]]
+
+# .. envvar:: es_user_id [[[
+#
+#    ElasticSearch user id
+#
+es_user_id: 1000
+#
+# ]]]
+
+# .. envvar:: conf_dir [[[
+#
+#    Configuration directory
+#
+conf_dir: "/usr/share/elasticsearch/config"
+#
+# ]]]
+
+# .. envvar: es_config [[[
+#
+#    Dictionary with elasticsearch configuration
+#    parameters
+#
+es_config: {}
+#
+# Example:
+#
+# .. code:: yaml [[[
+#
+#    es_config:
+#      node.name: "{{ ansible_hostname }}"
+#      cluster.name: "{{ es_cluster_name }}"
+#      node.data: true
+#      node.master: false
+#      bootstrap.memory_lock: true
+#      discovery.zen.ping.unicast.hosts: "{{ groups.esmasters | join(',') }}"
+#
+# ]]]
+#
+# ]]]
+
+# .. envvar: data_dirs [[[
+#
+#    List with ElasticSearch data directories
+#
+data_dirs:
+  - "/usr/share/elasticsearch/data"
+#
+# ]]]
+
+# .. envvar:: log_dir [[[
+#
+#    Directory to save elasticsearch logs
+#
+log_dir: "/usr/share/elasticsearch/logs"
+#
+# ]]]
+
+# .. envvar:: es_heap_size [[[
+#
+#    Size of java virtual machine head
+#
+es_heap_size: 256m
+#
+# ]]]
+
+# .. envvar:: es_jvm_custom_parameters [[[
+#
+#    Custom parameters for java virtual machine
+#
+es_jvm_custom_parameters: ''
+#
+# ]]]
+
+# .. envvar:: es_data_lvm_vgname [[[
+#
+#    volume group name for elasticsearch data fs
+#
+es_data_lvm_vgname: vg_es
+#
+# ]]]
+
+# .. envvar:: es_data_lvm_pvs [[[
+#
+#    physical volume tha will be added to volume group
+#
+es_data_lvm_pvs: /dev/sdb
+#
+# ]]]
+
+# .. envvar:: es_data_lvm_pesize [[[
+#
+#    physical extend size
+#
+es_data_lvm_pesize: 4
+#
+# ]]]
+
+# .. envvar: es_data_lvm_lvname [[[
+#
+#    Logical volume name for data fs
+#
+es_data_lvm_lvname: lv_es_data
+#
+# ]]]
+
+# .. envvar: es_data_lvm_lvsize [[[
+#
+#    Size of the logical volume
+#
+es_data_lvm_lvsize: 100%FREE
+#
+# ]]]
+
+# .. envvar: es_data_lvm_fs [[[
+#
+#    Mount point for the filesystems that
+#    will be used by elasticsearch as data storage
+es_data_lvm_fs: /var/lib/elasticsearch
+#
+# ]]]
+
+# ElasticSearch monitoring management
+# ------------------------------
+
+# .. envvar:: elasticsearch_monitoring [[[
+#
+#    Enable or disable elasticsearch monitoring
+elasticsearch_monitoring: true
+#
+# ]]]

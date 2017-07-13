@@ -1,0 +1,8 @@
+- src: https://visitor:visitor@pdihub.hi.inet/inndo/ansible-repos
+  scm: git
+  version: master
+  name: repos
+- src: https://visitor:visitor@pdihub.hi.inet/inndo/ansible-pd-docker
+  scm: git
+  version: master
+  name: pd-docker

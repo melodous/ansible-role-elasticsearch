@@ -1,0 +1,13 @@
+[Unit]
+Description=ElasticSearch container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+RestartSec=1s
+ExecStart=/usr/bin/docker start -a elasticsearch
+ExecStop=/usr/bin/docker stop -t 2 elasticsearch
+
+[Install]
+WantedBy=multi-user.target
