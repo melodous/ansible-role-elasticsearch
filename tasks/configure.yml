@@ -1,5 +1,6 @@
 ---
-- sysctl:
+- name: Set vm.max_map_count kernel parameter
+  sysctl:
     name: vm.max_map_count
     value: 262144
     state: present
@@ -18,6 +19,8 @@
 - name: Create group
   shell: groupadd -o -g {{ es_group_id }} {{ es_group }}
   ignore_errors: true
+  tags:
+    - skip_ansible_lint
 
 - name: Create user
   user: name={{ es_user }} uid={{ es_user_id }} group={{ es_group }} non_unique=true
@@ -45,28 +48,28 @@
 
 - name: Install LVM software
   yum: name=lvm2
-  when: es_config['node.data'] == True
+  when: es_config['node.data'] is defined and es_config['node.data'] == True
 
 - name: Create Volume Group
   lvg: vg={{ es_data_lvm_vgname }} pvs={{ es_data_lvm_pvs }} pesize={{ es_data_lvm_pesize }} force=yes
   ignore_errors: yes
-  when: es_config['node.data'] == True
+  when: es_config['node.data'] is defined and  es_config['node.data'] == True
 
 - name: Create Logical Volume
   lvol: vg={{ es_data_lvm_vgname }} lv={{ es_data_lvm_lvname }} size={{ es_data_lvm_lvsize }} force=false shrink=false
-  when: es_config['node.data'] == True
+  when: es_config['node.data'] is defined and es_config['node.data'] == True
 
 - name: Create Filesystems
   filesystem: fstype=xfs dev=/dev/{{ es_data_lvm_vgname }}/{{ es_data_lvm_lvname }}
-  when: es_config['node.data'] == True
+  when: es_config['node.data'] is defined and es_config['node.data'] == True
 
 - name: Configure Filesystem
   mount: state=mounted fstype=xfs src=/dev/{{ es_data_lvm_vgname }}/{{ es_data_lvm_lvname }} name={{ es_data_lvm_fs }} opts=noatime
-  when: es_config['node.data'] == True
+  when: es_config['node.data'] is defined and es_config['node.data'] == True
 
 - name: Configure perms Filesystems
-  file: state=directory mode=755 path={{ es_data_lvm_fs }} owner={{ es_user }} group={{ es_group }}
-  when: es_config['node.data'] == True
+  file: state=directory mode=0755 path={{ es_data_lvm_fs }} owner={{ es_user }} group={{ es_group }}
+  when: es_config['node.data'] is defined and es_config['node.data'] == True
 
 - name: Pull elasticsearch image
   shell: docker pull "{{ elasticsearch_docker_image }}:{{ elasticsearch_version }}"
@@ -75,7 +78,9 @@
   until: result_docker|success
   retries: 3
   delay: 1
-  tags: update
+  tags:
+    - update
+    - skip_ansible_lint
 
 - name: Start elasticsearch containers
   docker_container:

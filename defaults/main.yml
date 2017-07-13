@@ -8,7 +8,7 @@
 #    :local:
 
 # elasticsearch packaging
-# ----------------
+# -----------------------
 
 # .. envvar:: elasticsearch_docker_imagen [[[
 #
@@ -39,7 +39,7 @@ es_docker_labels:
 # ]]]
 
 # ElasticSearch configuration
-# ----------------------
+# ---------------------------
 
 # .. envvar:: es_group [[[
 #
@@ -118,6 +118,22 @@ data_dirs:
 #    Directory to save elasticsearch logs
 #
 log_dir: "/usr/share/elasticsearch/logs"
+#
+# ]]]
+
+# .. envvar: es_cluster_name [[[
+#
+#    The name of the cluster
+#
+es_cluster_name: elasticsearch
+#
+# ]]]
+
+# .. envvar:: es_instance_name [[[
+#
+#    Name of the instance
+#
+es_instance_name: "{{ ansible_hostname }}"
 #
 # ]]]
 
