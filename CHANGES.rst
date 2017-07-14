@@ -21,6 +21,15 @@ Changed
 
 - First change
 
+elasticsearch v0.0.3 - 2017/07/14
+---------------------------------
+
+Added
+~~~~~
+
+- Fixed error un filter_plugins
+
+
 elasticsearch v0.0.2 - 2017/07/14
 ---------------------------------
 
