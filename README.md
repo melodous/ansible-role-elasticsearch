@@ -106,6 +106,14 @@ Example:
 
     log_dir: "/usr/share/elasticsearch/logs"
 
+    es_cluster_name: elasticsearch
+
+`es_instance_name`
+
+> Name of the instance
+
+    es_instance_name: "{{ ansible_hostname }}"
+
 `es_heap_size`
 
 > Size of java virtual machine head
@@ -165,6 +173,12 @@ changelog.
 ##### Changed
 
 -   First change
+
+### elasticsearch v0.0.2 - 2017/07/14
+
+##### Added
+
+-   Added custom plugin
 
 ### elasticsearch v0.0.1 - 2017/07/13
 

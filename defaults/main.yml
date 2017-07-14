@@ -202,7 +202,7 @@ es_data_lvm_fs: /var/lib/elasticsearch
 # ]]]
 
 # ElasticSearch monitoring management
-# ------------------------------
+# -----------------------------------
 
 # .. envvar:: elasticsearch_monitoring [[[
 #

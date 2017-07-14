@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to elasticsearch Ansible Role's documentation!
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. toctree::
    :maxdepth: 5

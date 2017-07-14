@@ -7,7 +7,7 @@ pip ansible role default variables
    :local:
 
 elasticsearch packaging
-----------------
+-----------------------
 
 .. envvar:: elasticsearch_docker_imagen
 
@@ -47,7 +47,7 @@ elasticsearch packaging
 
 
 ElasticSearch configuration
-----------------------
+---------------------------
 
 .. envvar:: es_group
 
@@ -153,6 +153,28 @@ Example:
 
 
 
+.. envvar: es_cluster_name
+
+   The name of the cluster
+
+::
+
+  es_cluster_name: elasticsearch
+
+
+
+
+.. envvar:: es_instance_name
+
+   Name of the instance
+
+::
+
+  es_instance_name: "{{ ansible_hostname }}"
+
+
+
+
 .. envvar:: es_heap_size
 
    Size of java virtual machine head
@@ -242,7 +264,7 @@ Example:
 
 
 ElasticSearch monitoring management
-------------------------------
+-----------------------------------
 
 .. envvar:: elasticsearch_monitoring
 
