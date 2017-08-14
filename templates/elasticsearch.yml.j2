@@ -20,6 +20,10 @@ path.data: {{ data_dirs | array_to_str }}
 
 path.logs: {{ log_dir }}
 
+{% if es_backup == true %}
+path.repo: [ "{{ es_backup_mountpoint }}" ]
+{% endif %}
+
 discovery.zen.minimum_master_nodes: 2
 
 #xpack.graph.enabled: false

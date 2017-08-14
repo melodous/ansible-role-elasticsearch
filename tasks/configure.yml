@@ -30,11 +30,8 @@
   file: path={{ item }} state=directory owner={{ es_user }} group={{ es_group }}
   with_items:
     - /etc/elasticsearch
-
-- name: Create Data Directories
-  file: path={{ item }} state=directory owner={{ es_user }} group={{ es_group }}
-  with_items:
     - /var/lib/elasticsearch
+    - "{{ es_backup_mountpoint }}"
 
 #Copy the config template
 - name: Copy Configuration File
@@ -105,6 +102,7 @@
       - /etc/elasticsearch/jvm.options:/usr/share/elasticsearch/config/jvm.options
       - /var/lib/elasticsearch:/usr/share/elasticsearch/data
       - /etc/security/limits.conf:/etc/security/limits.conf
+      - "{{ es_backup_mountpoint }}:{{ es_backup_mountpoint }}"
 
 - name: Create init-script rhel6
   copy: src=elasticsearch_rhel6 dest=/etc/init.d/elasticsearch owner=root group=root mode=0755

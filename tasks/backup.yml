@@ -1,0 +1,17 @@
+---
+- name: Ensure NFS utilities are installed.
+  package: name=nfs-utils state=installed
+
+- name: Ensure rpcbind is running.
+  service: name=rpcbind state=started enabled=yes
+
+- name: Configure nfs
+  mount: name="{{ es_backup_mountpoint }}" src={{ es_backup_nfs }} fstype=nfs opts=defaults state=mounted
+
+- name: Configure repository on ES
+  uri:
+    url: "http://127.0.0.1:9200/_snapshot/{{ es_backup_repo_name }}"
+    method: "POST"
+    body: '{"type": "fs", "settings": { "location": "{{ es_backup_mountpoint }}" } }'
+    body_format: json  
+  run_once: true

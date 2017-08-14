@@ -10,7 +10,6 @@ and `human-readable changelog <http://keepachangelog.com/en/0.3.0/>`__.
 elasticsearch master - unreleased
 ---------------------------------
 
-
 Added
 ~~~~~
 
@@ -20,6 +19,15 @@ Changed
 ~~~~~~~
 
 - First change
+
+elasticsearch v0.0.5 - 2017/08/14
+---------------------------------
+
+Added
+~~~~~
+
+- Added repository configuration
+
 
 elasticsearch v0.0.4 - 2017/07/17
 ---------------------------------

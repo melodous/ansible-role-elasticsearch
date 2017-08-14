@@ -144,9 +144,45 @@ Example:
 
     es_data_lvm_pesize: 4
 
+`es_data_lvm_lvname`
+
+> Logical volume name for data fs
+
     es_data_lvm_lvname: lv_es_data
 
     es_data_lvm_lvsize: 100%FREE
+
+`es_data_lvm_fs`
+
+> Mount point for the filesystems that will be used by elasticsearch as
+> data storage
+
+    es_data_lvm_fs: /var/lib/elasticsearch
+
+`es_backup`
+
+> Configure snapshots for ElasticSearch cluster You must configure NFS
+> mount point for all clusters members
+
+    es_backup: false
+
+`es_backup_nfs`
+
+> NFS mount point for snapshots
+
+    es_backup_nfs: false
+
+`es_backup_mountpoint`
+
+> mountpoint for the nfs share
+
+    es_backup_mountpoint: "{{ es_data_lvm_fs }}/backup"
+
+`es_backup_repo_name`
+
+> logical name for repository in ES Cluster
+
+    es_backup_repo_name: backup
 
 ### ElasticSearch monitoring management
 
