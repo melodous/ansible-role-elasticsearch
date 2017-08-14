@@ -210,6 +210,12 @@ changelog.
 
 -   First change
 
+### elasticsearch v0.0.6 - 2017/08/14
+
+##### Changed
+
+-   Fixed perms on nfs mount point
+
 ### elasticsearch v0.0.5 - 2017/08/14
 
 ##### Added
