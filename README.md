@@ -210,6 +210,12 @@ changelog.
 
 -   First change
 
+### elasticsearch v0.0.5 - 2017/08/14
+
+##### Added
+
+-   Added repository configuration
+
 ### elasticsearch v0.0.4 - 2017/07/17
 
 ##### Changed
